@@ -1,4 +1,4 @@
-YPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -107,7 +107,7 @@ YPE html>
            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name
         });
 
-        order.addEventListener("Click", () => {
+        order.addEventListener("сlick", () => {
            document.getElementById("error").innerText = " ";
            let name = document.getElementById("user_name").value;
            let email = document.getElementById("user_email").value;
@@ -115,6 +115,7 @@ YPE html>
            if(name.length < 5) {
                document.getElementById("error").innerText = "Ошибка в имени";
                return;
+           }
 
            let data = {
                name: name
@@ -128,6 +129,4 @@ YPE html>
     </script>
 </body>
 </html>
-
-
 

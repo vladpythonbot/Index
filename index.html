@@ -56,52 +56,58 @@
             background: var(--tg-theme-button-color);
         }
 
-
         button.hover {
             background: var(--tg-theme-secondary-bg-color);
         }
+
+        #form {
+            display: none;
+            text-align: center;
+            }
+
+        input {
+            width: 90%
+            outline: none;
+            margin : 10px 5%
+            padding: 15px 10px;
+            font-size: 14px;
+            border: 2px solid silver;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #db5d5d;
+        }
     </style>
 </head>
-
 <body>
-
     <div id="main">
-          <h1>Онлайн магазин</h1>
-          <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          <button id="buy">Купить</button>
+        <h1>Онлайн магазин</h1>
+        <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <button id="buy">Купить</button>
     </div>
+    <form id="form">
+        <input type="text" placeholder="Имя" id="user_name">
+        <input type="text" placeholder="Email" id="user_email">
+        <input type="text" placeholder="Телефон" id="user_phone">
+        <button id="order">Оформить</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = windows.Telegram.WebApp
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
 
-    <form id="form"> <input type="text" placeholder="Имя" id="user_name">
-    <input type="text" placeholder="Email" id="user_email">
-    <input type="text" placeholder="Телефон" id="user_phone">
-    <button id="order">Оформить</button>
-</form>
+        buy.addEventListener("click", () => {
+           document.getElementById("main").style.display = "none";
+           document.getElementById("form").style.display = "block";
+           document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name
+        });
 
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-<script>
-    const tg = window.Telegram.WebApp;
-
-    const buy = document.getElementById("buy");
-    const form = document.getElementById("form");
-    const order = document.getElementById("order");
-
-    buy.addEventListener("click", () => {
-        form.style.display = "block";
-        buy.style.display = "none";
-    });
-
-    order.addEventListener("click", () => {
-        let data = {
-            name: document.getElementById("user_name").value,
-            email: document.getElementById("user_email").value,
-            phone: document.getElementById("user_phone").value
-        };
-
-        tg.sendData(JSON.stringify(data));
-    });
-</script>
-
+        order.addEventListener("Click", () => {
+           tg.close();
+        });
+    </script>
 </body>
 </html>
